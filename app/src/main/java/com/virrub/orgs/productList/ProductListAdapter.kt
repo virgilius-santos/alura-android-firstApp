@@ -11,7 +11,7 @@ import com.virrub.orgs.R
 
 class ProductListAdapter(
     private val context: Context,
-    private val productList: List<Product>
+    productList: List<Product>
 ) : RecyclerView.Adapter<ProductListAdapter.ProductListViewHolder>() {
 
     class ProductListViewHolder(view: View) : ViewHolder(view) {
@@ -27,6 +27,8 @@ class ProductListAdapter(
         }
     }
 
+    private val productList = productList.toMutableList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.product_item, parent, false)
         return ProductListViewHolder(view)
@@ -37,5 +39,11 @@ class ProductListAdapter(
     }
 
     override fun getItemCount(): Int = productList.size
+
+    fun update(products: List<Product>) {
+        this.productList.clear()
+        this.productList.addAll(products)
+        notifyDataSetChanged()
+    }
 
 }

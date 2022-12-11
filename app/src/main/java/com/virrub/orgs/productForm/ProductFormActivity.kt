@@ -1,11 +1,10 @@
 package com.virrub.orgs.productForm
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import androidx.recyclerview.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
 import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.productList.Product
