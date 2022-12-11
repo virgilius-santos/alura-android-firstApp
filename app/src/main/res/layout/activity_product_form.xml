@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".productForm.ProductFormActivity">
+
+    <EditText
+        android:id="@+id/edt_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/form_edt_nome"
+        android:layout_marginTop="@dimen/master"
+        android:layout_marginStart="@dimen/master"
+        android:layout_marginEnd="@dimen/master"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:id="@+id/edt_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/form_edt_description"
+        android:layout_marginTop="@dimen/internal"
+        android:layout_marginStart="@dimen/master"
+        android:layout_marginEnd="@dimen/master"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_name"
+        />
+
+    <EditText
+        android:id="@+id/edt_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/form_edt_value"
+        android:layout_marginTop="@dimen/internal"
+        android:layout_marginStart="@dimen/master"
+        android:layout_marginEnd="@dimen/master"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_description"
+        />
+
+    <Button
+        android:id="@+id/form_btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/master"
+        android:text="@string/form_btn_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
