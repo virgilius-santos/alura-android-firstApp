@@ -7,6 +7,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
 import com.virrub.orgs.R
+import com.virrub.orgs.productList.Product
+import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -28,7 +30,21 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         super.onCreate(savedInstanceState)
 
         saveButton.setOnClickListener {
-            Log.i("ProductFormActivity", "onEvent: $nameText")
+            createProduct()
         }
+    }
+
+    private fun createProduct() {
+        val value = if (valueText.isBlank()) {
+            BigDecimal.ZERO
+        } else {
+            BigDecimal(valueText)
+        }
+        val product = Product(
+            nameText,
+            descriptionText,
+            value
+        )
+        Log.i("ProductFormActivity", "onEvent: $product")
     }
 }
