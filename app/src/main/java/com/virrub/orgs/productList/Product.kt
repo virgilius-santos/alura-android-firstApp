@@ -1,4 +1,4 @@
-package com.virrub.orgs
+package com.virrub.orgs.productList
 
 import java.math.BigDecimal
 
