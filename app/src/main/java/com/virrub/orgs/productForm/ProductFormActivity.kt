@@ -6,12 +6,14 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.RecyclerView
+import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
+    private val productsDAO = ProductsDAO()
     private val nameEditText: EditText by lazy { findViewById(R.id.edt_name) }
     private val descriptionEditText: EditText by lazy { findViewById(R.id.edt_description) }
     private val valueEditText: EditText by lazy { findViewById(R.id.edt_value) }
@@ -31,6 +33,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
         saveButton.setOnClickListener {
             createProduct()
+            finish()
         }
     }
 
@@ -46,5 +49,6 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             value
         )
         Log.i("ProductFormActivity", "onEvent: $product")
+        productsDAO.add(product)
     }
 }
