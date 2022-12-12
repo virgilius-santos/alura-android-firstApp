@@ -2,23 +2,22 @@ package com.virrub.orgs.productList
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.virrub.orgs.R
+import com.virrub.orgs.databinding.ProductItemBinding
 
 class ProductListAdapter(
     private val context: Context,
     productList: List<Product>
 ) : RecyclerView.Adapter<ProductListAdapter.ProductListViewHolder>() {
 
-    class ProductListViewHolder(view: View) : ViewHolder(view) {
+    class ProductListViewHolder(binding: ProductItemBinding) : ViewHolder(binding.root) {
 
-        private val nameTextView: TextView by lazy { itemView.findViewById(R.id.name) }
-        private val descriptionTextView: TextView by lazy { itemView.findViewById(R.id.description) }
-        private val valueTextView: TextView by lazy { itemView.findViewById(R.id.value) }
+        private val nameTextView: TextView by lazy { binding.name }
+        private val descriptionTextView: TextView by lazy { binding.description }
+        private val valueTextView: TextView by lazy { binding.value }
 
         fun vincula(product: Product) {
             nameTextView.text = product.name
@@ -30,8 +29,12 @@ class ProductListAdapter(
     private val productList = productList.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductListViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.product_item, parent, false)
-        return ProductListViewHolder(view)
+        val binding = ProductItemBinding.inflate(
+            LayoutInflater.from(context),
+            parent,
+            false
+        )
+        return ProductListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {
