@@ -7,16 +7,21 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
+import com.virrub.orgs.databinding.ActivityProductFormBinding
 import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
+    private val binding by lazy {
+        ActivityProductFormBinding.inflate(layoutInflater)
+    }
+
     private val productsDAO = ProductsDAO()
-    private val nameEditText: EditText by lazy { findViewById(R.id.edt_name) }
-    private val descriptionEditText: EditText by lazy { findViewById(R.id.edt_description) }
-    private val valueEditText: EditText by lazy { findViewById(R.id.edt_value) }
-    private val saveButton: Button by lazy { findViewById(R.id.form_btn_save) }
+    private val nameEditText: EditText by lazy { binding.edtName }
+    private val descriptionEditText: EditText by lazy { binding.edtDescription }
+    private val valueEditText: EditText by lazy { binding.edtValue }
+    private val saveButton: Button by lazy { binding.formBtnSave }
 
     val nameText: String
         get() { return nameEditText.text.toString() }
