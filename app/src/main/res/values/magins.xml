@@ -2,4 +2,5 @@
 <resources>
     <dimen name="master">16dp</dimen>
     <dimen name="internal">8dp</dimen>
+    <dimen name="round">8dp</dimen>
 </resources>
