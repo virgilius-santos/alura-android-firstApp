@@ -1,9 +1,12 @@
 package com.virrub.orgs.productForm
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputLayout
 import com.virrub.orgs.ProductsDAO
@@ -23,6 +26,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val descriptionEditText: EditText by lazy { binding.edtDescription }
     private val valueEditText: EditText by lazy { binding.edtValue }
     private val saveButton: Button by lazy { binding.formBtnSave }
+    private val imageView: ImageView by lazy { binding.formImgProduct }
 
     val nameText: String
         get() { return nameEditText.text.toString() }
@@ -41,6 +45,22 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             createProduct()
             finish()
         }
+
+        imageView.setOnClickListener {
+            showImageSelector()
+        }
+    }
+
+    private fun showImageSelector() {
+        AlertDialog.Builder(this)
+            .setView(R.layout.image_form)
+            .setPositiveButton("confirmar") { _, _ ->
+
+            }
+            .setNegativeButton("cancelar") { _, _ ->
+
+            }
+            .show()
     }
 
     private fun createProduct() {

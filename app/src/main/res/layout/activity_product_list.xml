@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        app:srcCompat="@drawable/add_icon"
+        app:srcCompat="@drawable/ic_action"
         android:layout_margin="@dimen/master"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
