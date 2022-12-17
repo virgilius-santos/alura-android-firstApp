@@ -7,6 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.virrub.orgs.databinding.ProductItemBinding
+import java.text.NumberFormat
+import java.util.*
 
 class ProductListAdapter(
     private val context: Context,
@@ -22,7 +24,7 @@ class ProductListAdapter(
         fun vincula(product: Product) {
             nameTextView.text = product.name
             descriptionTextView.text = product.description
-            valueTextView.text = product.value.toPlainString()
+            valueTextView.text = NumberFormat.getCurrencyInstance(Locale("pt", "br")).format(product.value)
         }
     }
 
