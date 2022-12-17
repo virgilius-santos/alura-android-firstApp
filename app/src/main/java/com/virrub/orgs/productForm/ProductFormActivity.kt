@@ -14,6 +14,7 @@ import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
 import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
+import java.net.URL
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -72,7 +73,8 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         val product = Product(
             nameText,
             descriptionText,
-            value
+            value,
+            "https://static.vecteezy.com/ti/fotos-gratis/t2/2992336-laranjas-maduras-sobre-fundo-branco-gratis-foto.jpg"
         )
         Log.i("ProductFormActivity", "onEvent: $product")
         productsDAO.add(product)
