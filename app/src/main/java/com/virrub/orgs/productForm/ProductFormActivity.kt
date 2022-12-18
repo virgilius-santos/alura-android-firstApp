@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import coil.load
 import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
@@ -21,34 +20,32 @@ import java.math.BigDecimal
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     class ImageFormDialog(
-        private var layoutInflater: LayoutInflater
+        private var context: Context
     ) {
-        private val imageFormBinding by lazy {
-            ImageFormBinding.inflate(layoutInflater)
-        }
-
-        val imageURL: String
-            get() {
-                return imageFormBinding.formImageInput.text.toString()
-            }
-
-        fun onCreate() {
-            imageFormBinding.imageFormButton.setOnClickListener {
+        private val binding by lazy {
+            val binding = ImageFormBinding.inflate(LayoutInflater.from(context))
+            binding.formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
+            binding.imageFormButton.setOnClickListener {
                 loadImageFromURLToDialog()
             }
+            return@lazy binding
         }
 
+        private val imageURL: String
+            get() {
+                return binding.formImageInput.text.toString()
+            }
+
         private fun loadImageFromURLToDialog() {
-            imageFormBinding.imageFormImage.tryLoad(imageURL)
+            binding.imageFormImage.tryLoad(imageURL)
         }
 
         fun showImageSelector(
-            context: Context,
             onSuccess: (String) -> Unit = {},
             onCancel: () -> Unit = {}
         ) {
             AlertDialog.Builder(context)
-                .setView(imageFormBinding.root)
+                .setView(binding.root)
                 .setPositiveButton("confirmar") { _, _ ->
                     onSuccess(imageURL)
                 }
@@ -70,7 +67,8 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val saveButton: Button by lazy { binding.formBtnSave }
     private val imageView: ImageView by lazy { binding.formImgProduct }
 
-    private val imageDialog: ImageFormDialog by lazy { ImageFormDialog(layoutInflater) }
+    private val imageDialog: ImageFormDialog
+        get() { return ImageFormDialog(this) }
 
     val nameText: String
         get() {
@@ -99,12 +97,10 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         }
 
         imageView.setOnClickListener {
-            imageDialog.showImageSelector(this, onSuccess = { imageURL ->
+            imageDialog.showImageSelector(onSuccess = { imageURL ->
                 loadImageFromURLToForm(imageURL)
             })
         }
-
-        imageDialog.onCreate()
     }
 
     private fun loadImageFromURLToForm(imageURL: String) {
