@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ProductItemBinding
+import com.virrub.orgs.extensions.tryLoad
 import java.text.NumberFormat
 import java.util.*
 
@@ -35,11 +36,7 @@ class ProductListAdapter(
             } else {
                 View.VISIBLE
             }
-            imageView.load(product.url) {
-                placeholder(R.drawable.empty_img)
-                fallback(R.drawable.empty_img)
-                error(R.drawable.empty_img)
-            }
+            imageView.tryLoad(product.url)
         }
     }
 

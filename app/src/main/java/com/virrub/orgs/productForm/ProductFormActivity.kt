@@ -14,6 +14,7 @@ import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
 import com.virrub.orgs.databinding.ImageFormBinding
+import com.virrub.orgs.extensions.tryLoad
 import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
 
@@ -38,11 +39,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         }
 
         private fun loadImageFromURLToDialog() {
-            imageFormBinding.imageFormImage.load(imageURL) {
-                placeholder(R.drawable.empty_img)
-                fallback(R.drawable.empty_img)
-                error(R.drawable.empty_img)
-            }
+            imageFormBinding.imageFormImage.tryLoad(imageURL)
         }
 
         fun showImageSelector(
@@ -112,11 +109,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     private fun loadImageFromURLToForm(imageURL: String) {
         this.imageURL = imageURL
-        binding.formImgProduct.load(imageURL) {
-            placeholder(R.drawable.empty_img)
-            fallback(R.drawable.empty_img)
-            error(R.drawable.empty_img)
-        }
+        binding.formImgProduct.tryLoad(imageURL)
     }
 
     private fun createProduct() {
