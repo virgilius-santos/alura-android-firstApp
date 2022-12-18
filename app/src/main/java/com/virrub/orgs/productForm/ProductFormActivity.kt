@@ -20,11 +20,16 @@ import java.math.BigDecimal
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     class ImageFormDialog(
-        private var context: Context
+        private var context: Context,
+        private var url: String?
     ) {
         private val binding by lazy {
             val binding = ImageFormBinding.inflate(LayoutInflater.from(context))
-            binding.formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
+            binding.formImageInput.setText(url)
+            if (url == null) {
+                binding.formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
+            }
+            binding.imageFormImage.tryLoad(url)
             binding.imageFormButton.setOnClickListener {
                 loadImageFromURLToDialog()
             }
@@ -68,7 +73,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val imageView: ImageView by lazy { binding.formImgProduct }
 
     private val imageDialog: ImageFormDialog
-        get() { return ImageFormDialog(this) }
+        get() { return ImageFormDialog(this, imageURL) }
 
     val nameText: String
         get() {
