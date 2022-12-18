@@ -1,22 +1,66 @@
 package com.virrub.orgs.productForm
 
-import android.content.DialogInterface
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textfield.TextInputLayout
+import coil.load
 import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
+import com.virrub.orgs.databinding.ImageFormBinding
 import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
-import java.net.URL
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
+
+    class ImageFormDialog(
+        private var layoutInflater: LayoutInflater
+    ) {
+        private val imageFormBinding by lazy {
+            ImageFormBinding.inflate(layoutInflater)
+        }
+
+        val imageURL: String
+            get() {
+                return imageFormBinding.formImageInput.text.toString()
+            }
+
+        fun onCreate() {
+            imageFormBinding.imageFormButton.setOnClickListener {
+                loadImageFromURLToDialog()
+            }
+        }
+
+        private fun loadImageFromURLToDialog() {
+            imageFormBinding.imageFormImage.load(imageURL) {
+                placeholder(R.drawable.empty_img)
+                fallback(R.drawable.empty_img)
+                error(R.drawable.empty_img)
+            }
+        }
+
+        fun showImageSelector(
+            context: Context,
+            onSuccess: (String) -> Unit = {},
+            onCancel: () -> Unit = {}
+        ) {
+            AlertDialog.Builder(context)
+                .setView(imageFormBinding.root)
+                .setPositiveButton("confirmar") { _, _ ->
+                    onSuccess(imageURL)
+                }
+                .setNegativeButton("cancelar") { _, _ ->
+                    onCancel()
+                }
+                .show()
+        }
+    }
 
     private val binding by lazy {
         ActivityProductFormBinding.inflate(layoutInflater)
@@ -29,14 +73,24 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val saveButton: Button by lazy { binding.formBtnSave }
     private val imageView: ImageView by lazy { binding.formImgProduct }
 
+    private val imageDialog: ImageFormDialog by lazy { ImageFormDialog(layoutInflater) }
+
     val nameText: String
-        get() { return nameEditText.text.toString() }
+        get() {
+            return nameEditText.text.toString()
+        }
 
     val descriptionText: String
-        get() { return descriptionEditText.text.toString() }
+        get() {
+            return descriptionEditText.text.toString()
+        }
 
     val valueText: String
-        get() { return valueEditText.text.toString() }
+        get() {
+            return valueEditText.text.toString()
+        }
+
+    var imageURL: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,20 +102,21 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         }
 
         imageView.setOnClickListener {
-            showImageSelector()
+            imageDialog.showImageSelector(this, onSuccess = { imageURL ->
+                loadImageFromURLToForm(imageURL)
+            })
         }
+
+        imageDialog.onCreate()
     }
 
-    private fun showImageSelector() {
-        AlertDialog.Builder(this)
-            .setView(R.layout.image_form)
-            .setPositiveButton("confirmar") { _, _ ->
-
-            }
-            .setNegativeButton("cancelar") { _, _ ->
-
-            }
-            .show()
+    private fun loadImageFromURLToForm(imageURL: String) {
+        this.imageURL = imageURL
+        binding.formImgProduct.load(imageURL) {
+            placeholder(R.drawable.empty_img)
+            fallback(R.drawable.empty_img)
+            error(R.drawable.empty_img)
+        }
     }
 
     private fun createProduct() {
@@ -74,7 +129,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
             nameText,
             descriptionText,
             value,
-            "https://static.vecteezy.com/ti/fotos-gratis/t2/2992336-laranjas-maduras-sobre-fundo-branco-gratis-foto.jpg"
+            imageURL
         )
         Log.i("ProductFormActivity", "onEvent: $product")
         productsDAO.add(product)

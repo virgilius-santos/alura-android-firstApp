@@ -31,6 +31,8 @@ class ProductListAdapter(
             valueTextView.text = NumberFormat.getCurrencyInstance(Locale("pt", "br")).format(product.value)
             imageView.load(product.url) {
                 placeholder(R.drawable.empty_img)
+                fallback(R.drawable.empty_img)
+                error(R.drawable.empty_img)
             }
         }
     }

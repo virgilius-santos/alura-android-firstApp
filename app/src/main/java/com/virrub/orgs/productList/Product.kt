@@ -6,5 +6,5 @@ data class Product(
     var name: String,
     var description: String,
     var value: BigDecimal,
-    var url: String
+    var url: String?
 )
