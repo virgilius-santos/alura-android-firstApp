@@ -2,6 +2,7 @@ package com.virrub.orgs.productList
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,6 +30,11 @@ class ProductListAdapter(
             nameTextView.text = product.name
             descriptionTextView.text = product.description
             valueTextView.text = NumberFormat.getCurrencyInstance(Locale("pt", "br")).format(product.value)
+            imageView.visibility = if (product.url == null) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
             imageView.load(product.url) {
                 placeholder(R.drawable.empty_img)
                 fallback(R.drawable.empty_img)
