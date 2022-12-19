@@ -17,7 +17,9 @@ import java.math.BigDecimal
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     private val binding by lazy {
-        ActivityProductFormBinding.inflate(layoutInflater)
+        val binding = ActivityProductFormBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        return@lazy binding
     }
 
     private val productsDAO = ProductsDAO()
@@ -49,13 +51,11 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         title = getString(R.string.product_form_title)
         saveButton.setOnClickListener {
             createProduct()
             finish()
         }
-
         imageView.setOnClickListener {
             imageDialog.showImageSelector(onSuccess = { imageURL ->
                 loadImageFromURLToForm(imageURL)

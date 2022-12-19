@@ -1,13 +1,13 @@
 package com.virrub.orgs.product.list
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.virrub.orgs.product.model.ProductsDAO
 import com.virrub.orgs.databinding.ActivityProductListBinding
 import com.virrub.orgs.product.form.ProductFormActivity
+import com.virrub.orgs.product.model.ProductsDAO
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -17,12 +17,13 @@ class ProductListActivity : AppCompatActivity() {
     private val productListAdapter = ProductListAdapter(this, productsDAO.findProducts())
 
     private val binding by lazy {
-        ActivityProductListBinding.inflate(layoutInflater)
+        val binding = ActivityProductListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        return@lazy binding
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         productListRecyclerView.adapter = productListAdapter
         addFAB.setOnClickListener {
             goToProductForm()
