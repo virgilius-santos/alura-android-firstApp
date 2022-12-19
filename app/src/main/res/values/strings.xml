@@ -7,4 +7,5 @@
     <string name="form_btn_save">Salvar</string>
     <string name="load">Carregar</string>
     <string name="form_image_input">URL da imagem</string>
+    <string name="product_form_title">Cadastrar Produto</string>
 </resources>

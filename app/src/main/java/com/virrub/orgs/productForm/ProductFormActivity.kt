@@ -24,16 +24,18 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         private var url: String?
     ) {
         private val binding by lazy {
-            val binding = ImageFormBinding.inflate(LayoutInflater.from(context))
-            binding.formImageInput.setText(url)
-            if (url == null) {
-                binding.formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
+            ImageFormBinding.inflate(LayoutInflater.from(context)).apply {
+                if (url == null) {
+                    formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
+                }
+                url?.let {
+                    formImageInput.setText(it)
+                    imageFormImage.tryLoad(it)
+                }
+                imageFormButton.setOnClickListener {
+                    loadImageFromURLToDialog()
+                }
             }
-            binding.imageFormImage.tryLoad(url)
-            binding.imageFormButton.setOnClickListener {
-                loadImageFromURLToDialog()
-            }
-            return@lazy binding
         }
 
         private val imageURL: String
@@ -95,7 +97,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        title = getString(R.string.product_form_title)
         saveButton.setOnClickListener {
             createProduct()
             finish()
