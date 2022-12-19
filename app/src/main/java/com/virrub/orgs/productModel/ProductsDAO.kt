@@ -1,8 +1,6 @@
-package com.virrub.orgs
+package com.virrub.orgs.productModel
 
-import com.virrub.orgs.productList.Product
 import java.math.BigDecimal
-import java.net.URL
 
 class ProductsDAO {
     fun add(product: Product) {

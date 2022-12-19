@@ -8,10 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import coil.load
-import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ProductItemBinding
 import com.virrub.orgs.extensions.tryLoad
+import com.virrub.orgs.productModel.Product
 import java.text.NumberFormat
 import java.util.*
 

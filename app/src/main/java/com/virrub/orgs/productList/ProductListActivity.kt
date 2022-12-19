@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.virrub.orgs.ProductsDAO
-import com.virrub.orgs.R
+import com.virrub.orgs.productModel.ProductsDAO
 import com.virrub.orgs.databinding.ActivityProductListBinding
 import com.virrub.orgs.productForm.ProductFormActivity
 

@@ -1,67 +1,20 @@
 package com.virrub.orgs.productForm
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.virrub.orgs.ProductsDAO
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
-import com.virrub.orgs.databinding.ImageFormBinding
 import com.virrub.orgs.extensions.tryLoad
-import com.virrub.orgs.productList.Product
+import com.virrub.orgs.imageForm.ImageFormDialog
+import com.virrub.orgs.productModel.Product
+import com.virrub.orgs.productModel.ProductsDAO
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
-
-    class ImageFormDialog(
-        private var context: Context,
-        private var url: String?
-    ) {
-        private val binding by lazy {
-            ImageFormBinding.inflate(LayoutInflater.from(context)).apply {
-                if (url == null) {
-                    formImageInput.setText("https://asia.olympus-imaging.com/content/000107506.jpg")
-                }
-                url?.let {
-                    formImageInput.setText(it)
-                    imageFormImage.tryLoad(it)
-                }
-                imageFormButton.setOnClickListener {
-                    loadImageFromURLToDialog()
-                }
-            }
-        }
-
-        private val imageURL: String
-            get() {
-                return binding.formImageInput.text.toString()
-            }
-
-        private fun loadImageFromURLToDialog() {
-            binding.imageFormImage.tryLoad(imageURL)
-        }
-
-        fun showImageSelector(
-            onSuccess: (String) -> Unit = {},
-            onCancel: () -> Unit = {}
-        ) {
-            AlertDialog.Builder(context)
-                .setView(binding.root)
-                .setPositiveButton("confirmar") { _, _ ->
-                    onSuccess(imageURL)
-                }
-                .setNegativeButton("cancelar") { _, _ ->
-                    onCancel()
-                }
-                .show()
-        }
-    }
 
     private val binding by lazy {
         ActivityProductFormBinding.inflate(layoutInflater)
