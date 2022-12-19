@@ -1,4 +1,4 @@
-package com.virrub.orgs.productForm
+package com.virrub.orgs.product.form
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +10,8 @@ import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
 import com.virrub.orgs.extensions.tryLoad
 import com.virrub.orgs.imageForm.ImageFormDialog
-import com.virrub.orgs.productModel.Product
-import com.virrub.orgs.productModel.ProductsDAO
+import com.virrub.orgs.product.model.Product
+import com.virrub.orgs.product.model.ProductsDAO
 import java.math.BigDecimal
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {

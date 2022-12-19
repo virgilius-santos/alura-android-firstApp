@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".productForm.ProductFormActivity">
+    tools:context=".product.form.ProductFormActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".productForm.ProductFormActivity">
+        tools:context=".product.form.ProductFormActivity">
 
         <ImageView
             android:id="@+id/form_img_product"

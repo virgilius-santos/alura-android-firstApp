@@ -1,4 +1,4 @@
-package com.virrub.orgs.productList
+package com.virrub.orgs.product.list
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.virrub.orgs.databinding.ProductItemBinding
 import com.virrub.orgs.extensions.tryLoad
-import com.virrub.orgs.productModel.Product
+import com.virrub.orgs.product.model.Product
 import java.text.NumberFormat
 import java.util.*
 

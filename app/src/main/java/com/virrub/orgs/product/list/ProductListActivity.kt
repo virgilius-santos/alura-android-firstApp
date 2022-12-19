@@ -1,13 +1,13 @@
-package com.virrub.orgs.productList
+package com.virrub.orgs.product.list
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.virrub.orgs.productModel.ProductsDAO
+import com.virrub.orgs.product.model.ProductsDAO
 import com.virrub.orgs.databinding.ActivityProductListBinding
-import com.virrub.orgs.productForm.ProductFormActivity
+import com.virrub.orgs.product.form.ProductFormActivity
 
 class ProductListActivity : AppCompatActivity() {
 
