@@ -16,7 +16,8 @@ import java.util.*
 
 class ProductListAdapter(
     private val context: Context,
-    productList: List<Product>
+    productList: List<Product>,
+    private val onProductClick: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductListAdapter.ProductListViewHolder>() {
 
     class ProductListViewHolder(binding: ProductItemBinding) : ViewHolder(binding.root) {
@@ -51,7 +52,11 @@ class ProductListAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductListViewHolder, position: Int) {
-        holder.vincula(productList[position])
+        val product = productList[position]
+        holder.vincula(product)
+        holder.itemView.setOnClickListener {
+            onProductClick(product)
+        }
     }
 
     override fun getItemCount(): Int = productList.size
