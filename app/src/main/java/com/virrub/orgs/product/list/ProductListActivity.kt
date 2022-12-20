@@ -20,8 +20,8 @@ class ProductListActivity : AppCompatActivity() {
     private val productListAdapter: ProductListAdapter by lazy {
         ProductListAdapter(this, productsDAO.findProducts()) {
             val intent = Intent(this, ProductDetailActivity::class.java)
+
             startActivity(intent)
-            Log.i(TAG, "Clique: ${it.name}")
         }
     }
 

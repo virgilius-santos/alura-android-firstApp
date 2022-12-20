@@ -12,8 +12,6 @@ import com.virrub.orgs.databinding.ProductItemBinding
 import com.virrub.orgs.extensions.currenceValue
 import com.virrub.orgs.extensions.tryLoad
 import com.virrub.orgs.product.model.Product
-import java.text.NumberFormat
-import java.util.*
 
 class ProductListAdapter(
     private val context: Context,
