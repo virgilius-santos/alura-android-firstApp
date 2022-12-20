@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.virrub.orgs.databinding.ProductItemBinding
+import com.virrub.orgs.extensions.currenceValue
 import com.virrub.orgs.extensions.tryLoad
 import com.virrub.orgs.product.model.Product
 import java.text.NumberFormat
@@ -30,7 +31,7 @@ class ProductListAdapter(
         fun vincula(product: Product) {
             nameTextView.text = product.name
             descriptionTextView.text = product.description
-            valueTextView.text = NumberFormat.getCurrencyInstance(Locale("pt", "br")).format(product.value)
+            valueTextView.text = product.value.currenceValue()
             imageView.visibility = if (product.url == null) {
                 View.GONE
             } else {
