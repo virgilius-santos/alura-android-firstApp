@@ -1,9 +1,7 @@
 package com.virrub.orgs.product.list
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -11,6 +9,7 @@ import com.virrub.orgs.databinding.ActivityProductListBinding
 import com.virrub.orgs.product.detail.ProductDetailActivity
 import com.virrub.orgs.product.form.ProductFormActivity
 import com.virrub.orgs.product.model.ProductsDAO
+import com.virrub.orgs.product.model.toTransition
 
 class ProductListActivity : AppCompatActivity() {
 
@@ -20,7 +19,7 @@ class ProductListActivity : AppCompatActivity() {
     private val productListAdapter: ProductListAdapter by lazy {
         ProductListAdapter(this, productsDAO.findProducts()) {
             val intent = Intent(this, ProductDetailActivity::class.java)
-
+            intent.putExtra("product", it.toTransition())
             startActivity(intent)
         }
     }
