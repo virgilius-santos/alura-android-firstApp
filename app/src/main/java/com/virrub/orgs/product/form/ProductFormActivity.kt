@@ -15,9 +15,6 @@ import com.virrub.orgs.imageForm.ImageFormDialog
 import com.virrub.orgs.product.model.Product
 import com.virrub.orgs.product.model.ProductsDAO
 import java.math.BigDecimal
-import java.time.Instant.*
-import java.time.ZoneId
-import java.time.ZoneOffset
 
 class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
@@ -36,7 +33,9 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val dateEditText: EditText by lazy { binding.edtDate }
 
     private val imageDialog: ImageFormDialog
-        get() { return ImageFormDialog(this, imageURL) }
+        get() {
+            return ImageFormDialog(this, imageURL)
+        }
 
     val nameText: String
         get() {
