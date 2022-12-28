@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.virrub.orgs.databinding.ActivityProductListBinding
 import com.virrub.orgs.product.detail.ProductDetailActivity
@@ -14,6 +15,7 @@ import com.virrub.orgs.product.model.toTransition
 class ProductListActivity : AppCompatActivity() {
 
     private val productsDAO = ProductsDAO()
+    private val swipeRefreshLayout: SwipeRefreshLayout by lazy { binding.productListSwipe }
     private val productListRecyclerView: RecyclerView by lazy { binding.productList }
     private val addFAB: FloatingActionButton by lazy { binding.listBtAdd }
     private val productListAdapter: ProductListAdapter by lazy {
@@ -36,6 +38,9 @@ class ProductListActivity : AppCompatActivity() {
         addFAB.setOnClickListener {
             goToProductForm()
         }
+        swipeRefreshLayout.setOnRefreshListener {
+            updateProducts()
+        }
     }
 
     private fun goToProductForm() {
@@ -45,6 +50,11 @@ class ProductListActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        updateProducts()
+    }
+
+    private fun updateProducts() {
         productListAdapter.update(productsDAO.findProducts())
+        swipeRefreshLayout.isRefreshing = false
     }
 }
