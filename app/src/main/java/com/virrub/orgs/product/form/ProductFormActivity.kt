@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.virrub.orgs.R
 import com.virrub.orgs.databinding.ActivityProductFormBinding
+import com.virrub.orgs.extensions.toLocalDate
 import com.virrub.orgs.extensions.tryLoad
 import com.virrub.orgs.imageForm.ImageFormDialog
 import com.virrub.orgs.product.model.Product
@@ -104,12 +105,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
         dateSelector.show(supportFragmentManager, "MATERIAL_DATE_PICKER")
         dateSelector
             .addOnPositiveButtonClickListener { dataEmMilisegundos ->
-                val data = ofEpochMilli(dataEmMilisegundos)
-                    .atZone(ZoneId.of("America/Sao_Paulo"))
-                    .withZoneSameInstant(ZoneId.ofOffset("UTC", ZoneOffset.UTC))
-                    .toLocalDate()
-                Log.i("MaterialDatePicker", "data com LocalDate: $data")
-                dateEditText.setText(data.toString())
+                dateEditText.setText(dataEmMilisegundos.toLocalDate())
             }
     }
 }
