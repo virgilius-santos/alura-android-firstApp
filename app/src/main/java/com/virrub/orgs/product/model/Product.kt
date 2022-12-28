@@ -8,25 +8,25 @@ data class Product(
     var name: String,
     var description: String,
     var value: BigDecimal,
-    var url: String?
+    var url: String?,
+    var date: String?
 )
 
 fun Product.toTransition(): ProductTransition {
     return ProductTransition(
-        name, description, value, url
+        name, description, value, url, date
     )
 }
 
-fun ProductTransition.toProduct(): Product? {
-    val name = name?.let { it } ?: return null
-    val description = description?.let { it } ?: return null
-    return Product(name, description, value, url)
+fun ProductTransition.toProduct(): Product {
+    return Product(name, description, value, url, date)
 }
 
 @Parcelize
 data class ProductTransition(
-    var name: String?,
-    var description: String?,
+    var name: String,
+    var description: String,
     var value: BigDecimal,
-    var url: String?
+    var url: String?,
+    var date: String?
 ) : Parcelable
