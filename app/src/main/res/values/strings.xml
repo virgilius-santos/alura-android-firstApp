@@ -4,6 +4,7 @@
     <string name="form_edt_nome">Nome</string>
     <string name="form_edt_description">descrição</string>
     <string name="form_edt_value">Valor</string>
+    <string name="form_edt_date">Data</string>
     <string name="form_btn_save">Salvar</string>
     <string name="load">Carregar</string>
     <string name="form_image_input">URL da imagem</string>

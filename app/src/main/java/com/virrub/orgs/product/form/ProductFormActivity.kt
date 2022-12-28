@@ -5,7 +5,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.virrub.orgs.R
@@ -33,7 +32,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
     private val valueEditText: EditText by lazy { binding.edtValue }
     private val saveButton: Button by lazy { binding.formBtnSave }
     private val imageView: ImageView by lazy { binding.formImgProduct }
-    private val dateTextView: TextView by lazy { binding.formLayoutEdtDate }
+    private val dateEditText: EditText by lazy { binding.edtDate }
 
     private val imageDialog: ImageFormDialog
         get() { return ImageFormDialog(this, imageURL) }
@@ -57,7 +56,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
 
     val dateText: String
         get() {
-            return dateTextView.text.toString()
+            return dateEditText.text.toString()
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,7 +71,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
                 loadImageFromURLToForm(imageURL)
             })
         }
-        dateTextView.setOnClickListener {
+        dateEditText.setOnClickListener {
             openDatePicker()
         }
     }
@@ -110,7 +109,7 @@ class ProductFormActivity : AppCompatActivity(R.layout.activity_product_form) {
                     .withZoneSameInstant(ZoneId.ofOffset("UTC", ZoneOffset.UTC))
                     .toLocalDate()
                 Log.i("MaterialDatePicker", "data com LocalDate: $data")
-                dateTextView.setText(data.toString())
+                dateEditText.setText(data.toString())
             }
     }
 }
