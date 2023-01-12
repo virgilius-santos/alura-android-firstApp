@@ -1,6 +1,7 @@
 package com.virrub.orgs.product.model
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 import java.math.BigDecimal
 
@@ -30,3 +31,12 @@ data class ProductTransition(
     var url: String?,
     var date: String?
 ) : Parcelable
+
+@Entity
+data class ProductEntity(
+    var name: String,
+    var description: String,
+    var value: BigDecimal,
+    var url: String?,
+    var date: String?
+)
